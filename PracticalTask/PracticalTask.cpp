@@ -42,7 +42,7 @@ int main()
         << "kluboSavininkas: " << kluboSavininkas << "\n"
         << "Stadionas: " << stadionas << "\n"
         << "Ikurimo metai: " << ikurimoMetai << "\n"
-        << "Vietu skaicius: " << vietuSkaicius << endl;
+        << "Vietu skaicius: " << vietuSkaicius << "\n" << endl;
 
     // Trecia uzduotis
 
@@ -55,9 +55,40 @@ int main()
     ;
 
     cout
-        << "\n" << "Automobilis " << modelis
+        << "Automobilis " << modelis
         << " yra pagamintas " << metai
         << " jo motoro litraza yra " << litrazas
-        << " Automobilis yra " << spalva << " spalvos " << endl;
+        << " Automobilis yra " << spalva << " spalvos "<< "\n" << endl;
+
+    //Kietvirta Uzduotis
+
+    int
+        a = 13,
+        b = 5;
+    float c = 17.5;
+
+    cout
+        << a + b - c << "\n"
+        << 15 / 2 - c << "\n"
+        << a / static_cast<double>(b) + 2 * c << "\n"
+        << 14 % 3 + 6.3 + b / a << "\n"
+        << static_cast<int>(c) % 5 + a - b << "\n"
+        << 13.5 / 2 + 4.0 * 3.5 + 18 << "\n" << endl;
+
+    // Penkta Uzduotis
+    int
+        sk1 = 10,
+        sk2 = 6,
+        sk3 = 8,
+        sk4 = 7,
+        sk5 = 7,
+        vidurkis = 0;
+
+    cout << static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
 }
+
+
+
+
+
 
