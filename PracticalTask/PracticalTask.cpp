@@ -85,6 +85,21 @@ int main()
 
     cout << "Vidurkis " <<  static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
 
+    // Sesta uzduotis
+
+    int sk;
+  
+
+    cout << "Iveskite dvizenkli skaiciu" << endl;
+    
+    cin >> sk;
+
+    cout << "Dvizeklio sk skaitmenu suma yra " << (sk / 10) + (sk % 10) << endl;
+
+
+
+
+
 
 }
 
