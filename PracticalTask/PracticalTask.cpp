@@ -81,10 +81,9 @@ int main()
         sk2 = 6,
         sk3 = 8,
         sk4 = 7,
-        sk5 = 7,
-        vidurkis = 0;
+        sk5 = 7;
 
-    cout << "Vidurkis" <<  static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
+    cout << "Vidurkis " <<  static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
 
 
 }
