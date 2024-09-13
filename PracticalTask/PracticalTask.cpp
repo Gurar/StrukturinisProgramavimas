@@ -43,5 +43,21 @@ int main()
         << "Stadionas: " << stadionas << "\n"
         << "Ikurimo metai: " << ikurimoMetai << "\n"
         << "Vietu skaicius: " << vietuSkaicius << endl;
+
+    // Trecia uzduotis
+
+    string
+        modelis = "Jeep",
+        marke = "Grand Sheroke",
+        spalva = "Juoda";
+    int metai = 2010;
+    float litrazas = 4.8;
+    ;
+
+    cout
+        << "\n" << "Automobilis " << modelis
+        << " yra pagamintas " << metai
+        << " jo motoro litraza yra " << litrazas
+        << " Automobilis yra " << spalva << " spalvos " << endl;
 }
 
