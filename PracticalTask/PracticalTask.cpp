@@ -83,6 +83,7 @@ int main()
         sk4 = 7,
         sk5 = 7;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     cout << "Vidurkis " <<  static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
 
@@ -102,6 +103,10 @@ int main()
 
 
 
+=======
+
+    cout << "Vidurkis" <<  static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
+>>>>>>> 4cc5fc1bdf28b92e28704614298cfd48a9a21a27
 =======
 
     cout << "Vidurkis" <<  static_cast<float>(sk1 + sk2 + sk3 + sk4 + sk5) / 5 << endl;
