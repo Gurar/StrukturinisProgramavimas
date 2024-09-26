@@ -25,6 +25,18 @@ void dviejuSkaitmenuSuma(int skaicius) {
 	}
 }
 
+void maxNumber(int sk1, int sk2) {
+	if (sk1 > sk2) {
+		cout << sk1 << endl;
+	}
+	else if (sk1 == sk2) {
+		cout << "Skaicia yra lygus" << endl;
+	}
+	else {
+		cout << sk2 << endl;
+	}
+}
+
 int main() {
 	message();
 
@@ -43,6 +55,8 @@ int main() {
 	cout << "====================" << endl;
 
 	dviejuSkaitmenuSuma(100);
+
+	maxNumber(20, 10);
 
 
 }
