@@ -14,12 +14,27 @@ void fakultetas() {
 	cout << "Elektronikos ir Informatikos Fakultetas" << endl;
 }
 
+void randomNumber() {
+	
+	cout << "Atsitiktinis skaicius " << rand() << endl;
+}
+
 int main() {
 	message();
 
 	kolegija();
 	fakultetas();
 
+	int sk = 1;
+
+	cout << "====================" << endl;
+
+	while (sk <= 10) {
+		randomNumber();
+		sk++;
+	}
+
+	cout << "====================" << endl;
 
 
 }
