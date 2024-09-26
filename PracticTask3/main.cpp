@@ -19,6 +19,12 @@ void randomNumber() {
 	cout << "Atsitiktinis skaicius " << rand() << endl;
 }
 
+void dviejuSkaitmenuSuma(int skaicius) {
+	if (skaicius <= 99) {
+		cout << (skaicius / 10) + (skaicius % 10) << endl;
+	}
+}
+
 int main() {
 	message();
 
@@ -35,6 +41,8 @@ int main() {
 	}
 
 	cout << "====================" << endl;
+
+	dviejuSkaitmenuSuma(100);
 
 
 }
