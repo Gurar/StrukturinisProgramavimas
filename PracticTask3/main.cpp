@@ -21,7 +21,16 @@ void randomNumber() {
 
 void dviejuSkaitmenuSuma(int skaicius) {
 	if (skaicius <= 99) {
-		cout << (skaicius / 10) + (skaicius % 10) << endl;
+		cout << "Dvieju skaitmenu suma: " <<  (skaicius / 10) + (skaicius % 10) << endl;
+	}
+}
+
+void dviejuSkaitmenuDelmuo(int skaicius) {
+	if (skaicius % 10 == 0) {
+		cout << "daliba is nulio negalima" << endl;
+	}
+	else {
+		cout << "Dvieju skaitmenu suma: " << static_cast<float>(skaicius / 10) / (skaicius % 10) << endl;
 	}
 }
 
@@ -54,9 +63,15 @@ int main() {
 
 	cout << "====================" << endl;
 
-	dviejuSkaitmenuSuma(100);
+	dviejuSkaitmenuSuma(10);
+
+	cout << "delmuo " << endl;
+
+	dviejuSkaitmenuDelmuo(25);
 
 	maxNumber(20, 10);
+	maxNumber(1, 5);
+	maxNumber(3, 3);
 
 
 }
