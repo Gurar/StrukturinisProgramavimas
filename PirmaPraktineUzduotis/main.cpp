@@ -37,13 +37,13 @@ int main() {
 			valiutosLiginimas();
 			break;
 		case 2:
-			cout << "pirtkti" << endl;
+			pirktiValiuta();
 			break;
 		case 3:
-			cout << "parduoti" << endl;
+			/*parduotiValiuta();*/
 			break;
 		default:
-			cout << "Tokios komandos nera" << endl;
+			cout << "Tokios komandos nera \n" << endl;
 			break;
 		}
 	}
@@ -63,8 +63,14 @@ void valiutosLiginimas() {
 
 
 		cout << "Iveskite konvertuojama suma" << endl;
-		cin >> suma;
-		cout << endl;
+
+		while (!(cin >> suma)) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Iveskite kieki" << endl;
+		}
+		
+
 		cout
 			<< "*************************************************** \n"
 			<< (suma * GBP_Bendras) << " GBP \n\n"
@@ -89,4 +95,55 @@ void valiutosLiginimas() {
 
 
 	} while (isRunning);
+}
+
+void pirktiValiuta() {
+	bool isRunning = true;
+	do {
+		cout << "Valiutos pirkimas" << endl;
+
+		int command;
+
+		float
+			GBP_Pirkti = 0.8450,
+			USD_Pirkti = 1.0547,
+			INR_Pirkti = 85.2614,
+			suma = 0;
+
+		cout
+			<< "Pasirinkite vaiuta kuria norit pirkti \n"
+			<< "1 - GBP \n"
+			<< "2 - USD \n"
+			<< "3 - INR " << endl;
+
+
+		while (!(cin >> command)) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Tokios komandos nera" << endl;
+		}
+
+		cout << "Iveskite perkama suma" << endl;
+
+		while (!(cin >> suma)) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Iveskite paerkama suma" << endl;
+		}
+
+		switch (command) {
+		case 1:
+			cout << (suma / GBP_Pirkti) << " EUR " << endl;
+			break;
+		case 2:
+			cout << (suma / USD_Pirkti) << " EUR " << endl;
+			break;
+		case 3:
+			cout << (suma / INR_Pirkti) << " EUR " << endl;
+			break;
+		default:
+			cout << "Tokios komandos niera" << endl;
+		}
+	} while (isRunning);
+
 }
