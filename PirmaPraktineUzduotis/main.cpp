@@ -1,52 +1,38 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-void message( string text) {
-	cout << text << endl;
-}
-
-void lygintiValiuta() {
-	message("Liginty Valiuta");
-}
-
-void pirktiValiuta() {
-	message("Pirkti Valiuta");
-
-
-}
-
-void parduotiValiuta() {
-	message("Parduoti Valiuta");
-}
-
 int main() {
+	
+	bool isRuning = true;
 
-	bool ciklas = true;
+	while (isRuning) {
+		int options;
 
-	while (ciklas) {
-		int operacija;
-		message("Operacijos meniu");
-		message("=================");
-		cin >> operacija;
+		cout 
+			<< "Pasirinkite operacija \n"
+			<< "1 - valiutos kurso palyginimas \n"
+			<< "2 - pirkti valiuta \n"
+			<< "3 - parduoti valiuta \n"
+			<< "0 - baigti darba" << endl;
 
-		switch (operacija) {
-		case 1: 
-			lygintiValiuta();
+		cin >> options;
+
+		switch (options) {
+		case 1:
+			cout << "liginti" << endl;
 			break;
 		case 2:
-			pirktiValiuta();
+			cout << "pirtkti" << endl;
 			break;
 		case 3:
-			parduotiValiuta();
+			cout << "parduoti" << endl;
 			break;
 		case 4:
-			message("baigti darba");
-			ciklas = false;
+			cout << "Bagti darba" << endl;
+			isRuning = false;
 			break;
 		default:
-			message("pasirinkite operacija");
 			break;
 		}
 	}
