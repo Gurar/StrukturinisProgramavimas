@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
 void valiutosLiginimas();
 void pirktiValiuta();
 void parduotiValiuta();
+
+int inputValue(int commandCount, string errMsg);
+int inputValue(string errMsg);
 
 int main() {
 	
@@ -17,21 +21,18 @@ int main() {
 		
 		cout 
 			<< "Pasirinkite operacija \n"
-			<< "1 - valiutos kurso palyginimas \n"
-			<< "2 - pirkti valiuta \n"
-			<< "3 - parduoti valiuta \n"
-			<< "0 - baigti darba" << endl;
+			<< "1 - Valiutos kurso palyginimas \n"
+			<< "2 - Pirkti valiuta \n"
+			<< "3 - Parduoti valiuta \n"
+			<< "0 - Baigti darba" << endl;
 
-		if (cin >> command) {
-			if (command == 0) {
-				isRunning = false;
-				break;
-			}	
+		command = inputValue(3, "Tokios komandos nera");
+
+		if (command == 0) {
+			isRunning = false;
+			break;
 		}
-		else {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		}
+			
 
 		switch (command) {
 		case 1:
@@ -42,9 +43,6 @@ int main() {
 			break;
 		case 3:
 			parduotiValiuta();
-			break;
-		default:
-			cout << "Tokios komandos nera \n" << endl;
 			break;
 		}
 	}
@@ -59,42 +57,30 @@ void valiutosLiginimas() {
 		suma = 0;
 
 	int command;
-
+	
 	do {
 
 		cout << "Valiutos kurso palyginimas su kita valiuta" << endl;
 
 		cout << "Iveskite konvertuojama suma" << endl;
 
-		while (!(cin >> suma)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Iveskite konvertuojama suma" << endl;
-		}
+		suma = inputValue("Iveskite konvertuojama suma");
 		
-
 		cout
-			<< "*************************************************** \n"
+			<< "================== \n"
 			<< (suma * GBP_Bendras) << " GBP \n\n"
 			<< (suma * USD_Bendras) << " USD \n\n"
 			<< (suma * INR_Bendras) << " INR \n"
-			<< "***************************************************" << endl;
-
+			<< "==================" << endl;
 
 		cout
-			<< "1 - pratesti operacija \n"
-			<< "0 - grizti i pagrindinie meniu" << endl;
+			<< "0 - Grizti i pagrindini meniu \n"
+			<< "1 - Pratesti" << endl;
 
-		if (cin >> command) {
-			if (command == 0)
-				isRunning = false;
-		}
-		else {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		command = inputValue(1, "Tokios komandos nera");
+
+		if (command == 0)
 			isRunning = false;
-		}
-
 
 	} while (isRunning);
 }
@@ -114,39 +100,49 @@ void pirktiValiuta() {
 		cout << "Valiutos pirkimas" << endl;
 
 		cout
-			<< "Pasirinkite vaiuta kuria norit pirkti \n"
+			<< "Pasirinkite valiuta kuria norit pirkti \n"
 			<< "1 - GBP \n"
 			<< "2 - USD \n"
-			<< "3 - INR " << endl;
+			<< "3 - INR \n"
+			<< "0 - Grizti i pagrindini meniu" << endl;
 
+		command = inputValue(3, "Tokios komandos niera");
 
-		while (!(cin >> command)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Tokios komandos nera" << endl;
+		if (command == 0) {
+			isRunning = false;
+			break;
 		}
+			
+			
 
 		cout << "Iveskite kieki" << endl;
 
-		while (!(cin >> suma)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Iveskite kieki" << endl;
-		}
+		suma = inputValue("Iveskite kieki");
 
 		switch (command) {
 		case 1:
-			cout << (suma / GBP_Pirkti) << " EUR " << endl;
+			cout << (round((suma / GBP_Pirkti) * 100.0) / 100.0) << " EUR " << endl;
 			break;
 		case 2:
-			cout << (suma / USD_Pirkti) << " EUR " << endl;
+			cout << (round((suma / USD_Pirkti) * 100.0) / 100.0) << " EUR " << endl;
 			break;
 		case 3:
-			cout << (suma / INR_Pirkti) << " EUR " << endl;
+			cout << (round((suma / INR_Pirkti) * 100.0) / 100.0) << " EUR " << endl;
 			break;
 		default:
 			cout << "Tokios komandos niera" << endl;
 		}
+
+		cout
+			<< "0 - Grizti i pagrindini meniu \n"
+			<< "1 - Pratesti" << endl;
+
+
+		command = inputValue(1, "Tokios komandos niera");
+
+		if (command == 0)
+			isRunning = false;
+
 	} while (isRunning);
 
 }
@@ -160,43 +156,84 @@ void parduotiValiuta() {
 		suma = 0;
 	int command;
 
-
 	do {
 
 		cout
 			<< "Pasirinkite valiuta kuria norit parduoti \n"
 			<< "1 - GBP \n"
 			<< "2 - USD \n"
-			<< "3 - INR" << endl;
+			<< "3 - INR \n"
+			<< "0 - Grizti i pagrindini meniu" << endl;
 
-		while (!(cin >> command)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Tokios komandos nera" << endl;
+		command = inputValue(3, "Tokios komandos niera");
+
+		if (command == 0) {
+			isRunning = false;
+			break;
 		}
 
 		cout << "Iveskite kieki" << endl;
 
-		while (!(cin >> suma)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Iveskite kieki" << endl;
-		}
+		suma = inputValue("Iveskite kieki");
 
 		switch (command) {
 		case 1:
-			cout << (suma / GBP_Parduoti) << " EUR " << endl;
+			cout << (round((suma / GBP_Parduoti) * 100.0 ) / 100.0) << " EUR " << endl;
 			break;
 		case 2:
-			cout << (suma / USD_Parduoti) << " EUR " << endl;
+			cout << (round((suma / USD_Parduoti) * 100.0) / 100.0) << " EUR " << endl;
 			break;
 		case 3:
-			cout << (suma / INR_Parduoti) << " EUR " << endl;
+			cout << (round((suma / INR_Parduoti) * 100.0) / 100.0) << " EUR " << endl;
 			break;
-		default:
-			cout << "Invalid option, please try again." << endl;
+
 		}
+
+		cout
+			<< "0 - Grizti i pagrindini meniu \n"
+			<< "1 - pratesti" << endl;
+
+
+		command = inputValue(1, "Tokios komandos niera");
+
+		if (command == 0)
+			isRunning = false;
 
 
 	} while (isRunning);
+}
+
+int inputValue(int commandCount, string errMsg) {
+	int input;
+	bool isRunning = true;
+
+	while (isRunning) {
+		if (cin >> input) {
+			if (input <= commandCount && input >= 0) {
+				isRunning = false;
+			}
+			else {
+				cout << errMsg << endl;
+			}
+		} else {
+			cout << errMsg << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+		
+	}
+
+	return input;
+}
+
+int inputValue(string errMsg) {
+	int input;
+
+	while (!(cin >> input)) {
+		cout << errMsg << endl;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
+
+	return input;
 }
