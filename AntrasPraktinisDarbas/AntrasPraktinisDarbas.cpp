@@ -5,6 +5,8 @@
 
 using namespace std;
 
+void fizzBuzz(int n);
+
 int inputValue(int commandCount, string errMsg);
 int inputValue(string errMsg);
 
@@ -24,7 +26,7 @@ int main()
 			<< "4 - FizzBazz \n"
 			<< "0 - Baigti darba" << endl;
 
-		command = inputValue(3, "Tokios komandos nera");
+		command = inputValue(4, "Tokios komandos nera");
 
 		if (command == 0) {
 			isRunning = false;
@@ -42,17 +44,48 @@ int main()
 			cout << "3" << endl;
 			break;
 		case 4:
-			cout << "1" << endl;
+			bool isRunning = true;
+			int sk;
+			int command;
+			do {
+				cout << "Iveskite teigiama sveikaji skaiciu" << endl;
+
+				sk = inputValue("Iveskite teigiama sveikaji skaiciu");
+
+				fizzBuzz(sk);
+
+				cout
+					<< "0 - Grizti i pagrindini meniu \n"
+					<< "1 - pratesti" << endl;
+
+
+				command = inputValue(1, "Tokios komandos niera");
+
+				if (command == 0)
+					isRunning = false;
+			} while (isRunning);
 			break;
 		}
-
-
-
-		
 	}
 
 
 	return 0;
+}
+
+void fizzBuzz(int n) {
+	for (int i = 1; i <= n; i++) {
+		if (i % 3 == 0) {
+			if (i % 5 == 0) {
+				cout <<  i << " " << "FizzBuzz" << endl;
+			}
+			else {
+				cout << i << " " << "Fizz" << endl;
+			}
+		}
+		else if (i % 5 == 0) {
+			cout << i << " " << "Buzz" << endl;
+		}
+	}
 }
 
 
