@@ -5,6 +5,7 @@
 
 using namespace std;
 
+bool balse(char raide);
 void fizzBuzz(int n);
 
 int inputValue(int commandCount, string errMsg);
@@ -22,7 +23,7 @@ int main()
 			<< "Pasirinkite operacija \n"
 			<< "1 - Valiutos kurso palyginimas \n"
 			<< "2 - Pirkti valiuta \n"
-			<< "3 - Parduoti valiuta \n"
+			<< "3 - Zaidumas \n"
 			<< "4 - FizzBazz \n"
 			<< "0 - Baigti darba" << endl;
 
@@ -35,41 +36,39 @@ int main()
 
 		switch (command) {
 		case 1:
-			cout << "1" << endl;
+			char raide;
+			cout << "Iveskite raide" << endl;
+			cin >> raide;
+			cout << "Ivesta raide yra balse " << (balse(raide) ? "taip" : "nie") << endl;
 			break;
 		case 2:
 			cout << "2" << endl;
 			break;
 		case 3:
-			cout << "3" << endl;
 			break;
 		case 4:
-			bool isRunning = true;
 			int sk;
-			int command;
-			do {
-				cout << "Iveskite teigiama sveikaji skaiciu" << endl;
-
-				sk = inputValue("Iveskite teigiama sveikaji skaiciu");
-
-				fizzBuzz(sk);
-
-				cout
-					<< "0 - Grizti i pagrindini meniu \n"
-					<< "1 - pratesti" << endl;
-
-
-				command = inputValue(1, "Tokios komandos niera");
-
-				if (command == 0)
-					isRunning = false;
-			} while (isRunning);
+			cout << "Iveskite teigiama sveikaji skaiciu" << endl;
+			sk = inputValue("Iveskite teigiama sveikaji skaiciu");
+			fizzBuzz(sk);
 			break;
 		}
 	}
 
 
 	return 0;
+}
+
+bool balse(char raide) {
+	char balses[] = { 'a', 'i', 'o', 'y', 'u', 'e' };
+	bool otp = false;
+	for (int i = 0; i < 6; i++) {
+		if (balses[i] == raide) {
+			otp = true;
+			break;
+		}
+	}
+	return otp;
 }
 
 void fizzBuzz(int n) {
