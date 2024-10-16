@@ -23,8 +23,8 @@ int main()
 		
 		cout
 			<< "Pasirinkite operacija \n"
-			<< "1 - Valiutos kurso palyginimas \n"
-			<< "2 - Pirkti valiuta \n"
+			<< "1 - Patikrinti Ar raide yra balse \n"
+			<< "2 - Didziausias daliklis dvieju skaiciu \n"
 			<< "3 - Zaidumas \n"
 			<< "4 - FizzBazz \n"
 			<< "0 - Baigti darba" << endl;
@@ -41,7 +41,7 @@ int main()
 			char raide;
 			cout << "Iveskite raide" << endl;
 			cin >> raide;
-			cout << "Ivesta raide yra balse " << (balse(raide) ? "taip" : "nie") << endl;
+			cout << "Ivesta raide " << (balse(raide) ? "yra balse" : "niera balse") << endl;
 			break;
 		case 2:
 			int sk1, sk2;
@@ -97,10 +97,10 @@ int didziausiasDaliklis(int sk1, int sk2) {
 }
 
 void miniGame() {
-	int randomNumber = rand() / 100 + 1, number;
+	int randomNumber = rand() % 100 + 1, number;
 
 	while (true) {
-		cout << "Atspiekite skaiciu" << endl;
+		cout << randomNumber << " " << "Atspiekite skaiciu" << endl;
 		cin >> number;
 		if (randomNumber > number) {
 			cout << "Skaicius yra mazenis bandikite darkarta" << endl;
