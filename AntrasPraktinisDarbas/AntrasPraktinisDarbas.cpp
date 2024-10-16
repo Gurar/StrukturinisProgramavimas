@@ -6,6 +6,8 @@
 using namespace std;
 
 bool balse(char raide);
+int didziausiasDaliklis(int sk1, int sk2);
+void miniGame();
 void fizzBuzz(int n);
 
 int inputValue(int commandCount, string errMsg);
@@ -42,9 +44,20 @@ int main()
 			cout << "Ivesta raide yra balse " << (balse(raide) ? "taip" : "nie") << endl;
 			break;
 		case 2:
-			cout << "2" << endl;
+			int sk1, sk2;
+			cout << "Iveskite skaiciu" << endl;
+			cin >> sk1;
+			cout << "Iveskite skaiciu" << endl;
+			cin >> sk2;
+			
+			cout 
+				<< "Didziausias daliklis dvieju skaiciu " 
+				<< sk1 << " ir " << sk2 << " yra " 
+				<< didziausiasDaliklis(sk1, sk2) 
+				<< endl;
 			break;
 		case 3:
+			miniGame();
 			break;
 		case 4:
 			int sk;
@@ -69,6 +82,37 @@ bool balse(char raide) {
 		}
 	}
 	return otp;
+}
+
+int didziausiasDaliklis(int sk1, int sk2) {
+	int tmp;
+
+	while (sk2 > 0) {
+		tmp = sk1;
+		sk1 = sk2;
+		sk2 = tmp % sk2;
+	}
+	
+	return sk1;
+}
+
+void miniGame() {
+	int randomNumber = rand() / 100 + 1, number;
+
+	while (true) {
+		cout << "Atspiekite skaiciu" << endl;
+		cin >> number;
+		if (randomNumber > number) {
+			cout << "Skaicius yra mazenis bandikite darkarta" << endl;
+		}
+		else if (randomNumber < number) {
+			cout << "Skaicius yra didesnis bandikite darkarta" << endl;
+		}
+		else {
+			cout << "Sveikinu jus atspejote skaiciu" << endl;
+			break;
+		}
+	}
 }
 
 void fizzBuzz(int n) {
