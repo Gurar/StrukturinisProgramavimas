@@ -69,14 +69,54 @@ void sifravimas(string str, string strKey) {
 
 }
 
+void sifravimasASCII(string str, string strKey) {
+	for (int i = 0; i < str.length(); i++) {
+		int
+			m = int(str[i]),
+			k = int(strKey[i % strKey.size()]),
+			c;
+
+		m = (isupper(str[i]) ? m - 65 : m - 71);
+		k -= 65;
+		c = (m + k) % 52;
+
+		if (c < 26) {
+			str[i] = char(c + 65);
+		}
+		else {
+			str[i] = char(c + 71);
+		}
+	}
+
+	cout << "Uzsifruotas tekstas: " << str << endl;
+
+	for (int i = 0; i < str.length(); i++) {
+		int
+			m = int(str[i]),
+			k = int(strKey[i % strKey.size()]),
+			c;
+		m = (isupper(str[i]) ? m - 65 : m - 71);
+		k -= 65;
+		c = (m - k + 52) % 52;
+
+		if (c < 26) {
+			str[i] = char(c + 65);
+			
+		}
+		else {
+			str[i] = char(c + 71);
+		}
+	}
+
+	cout << "Desifruotas tekstas: " << str << endl;
+}
+
 int main()
 {
 	abecele();
 	int command;
 	string str, strKey;
 	while (true) {
-		str = input("Iveskite zodi");
-		strKey = input("Iveskite raktini zodi");
 		cout
 			<< "Pasirinkite operacija \n"
 			<< "1 - Sifravimas nauduojant masivo abecelie \n"
@@ -89,10 +129,16 @@ int main()
 
 		switch (command) {
 			case 1:
+				str = input("Iveskite zodi");
+				strKey = input("Iveskite raktini zodi");
 				cout << "Ivestas tekstas: " << str << endl;
 				sifravimas(str, strKey);
 				break;
 			case 2:
+				str = input("Iveskite zodi");
+				strKey = input("Iveskite raktini zodi");
+				cout << "Ivestas tekstas: " << str << endl;
+				sifravimasASCII(str, strKey);
 				break;
 		}
 	}
