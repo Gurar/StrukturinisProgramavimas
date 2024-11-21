@@ -5,7 +5,7 @@
 
 using namespace std;
 
-char ABECELE[52]{};
+char ABECELE[52];
 
 string input(string message) {
 	string input;
@@ -70,42 +70,21 @@ void sifravimas(string str, string strKey) {
 }
 
 void sifravimasASCII(string str, string strKey) {
+	int m, k, c;
 	for (int i = 0; i < str.length(); i++) {
-		int
-			m = int(str[i]),
-			k = int(strKey[i % strKey.size()]),
-			c;
-
-		m = (isupper(str[i]) ? m - 65 : m - 71);
-		k -= 65;
-		c = (m + k) % 52;
-
-		if (c < 26) {
-			str[i] = char(c + 65);
-		}
-		else {
-			str[i] = char(c + 71);
-		}
+		m = int(str[i]);
+		k = int(strKey[i % strKey.size()]);
+		c = 32 + ((m + k - 2 * 32) % 91);
+		str[i] = char(c);
 	}
 
 	cout << "Uzsifruotas tekstas: " << str << endl;
 
 	for (int i = 0; i < str.length(); i++) {
-		int
-			m = int(str[i]),
-			k = int(strKey[i % strKey.size()]),
-			c;
-		m = (isupper(str[i]) ? m - 65 : m - 71);
-		k -= 65;
-		c = (m - k + 52) % 52;
-
-		if (c < 26) {
-			str[i] = char(c + 65);
-			
-		}
-		else {
-			str[i] = char(c + 71);
-		}
+		m = int(str[i]);
+		k = int(strKey[i % strKey.size()]);
+		c = 32 + ((m - k + 91) % 91);
+		str[i] = char(c);
 	}
 
 	cout << "Desifruotas tekstas: " << str << endl;
