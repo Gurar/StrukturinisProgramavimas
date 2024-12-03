@@ -5,5 +5,7 @@
 
 #include <iostream>
 #include <string>
+#include <iterator>
+#include <iomanip> 
 
 // TODO: Reference additional headers your program requires here.
