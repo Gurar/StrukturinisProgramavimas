@@ -57,7 +57,7 @@ void showMenu() {
     int arrLenght = size(menuList);
     cout << "Restorano meniu" << endl;
     for (int i = 0; i < arrLenght; i++) {
-        cout << left << i + 1 << " - " << setw(40) << menuList[i].name << right << fixed << setprecision(2) << menuList[i].price << "$" << endl;
+        cout << left << i + 1 << " - " << setw(40) << menuList[i].name << right << fixed << setprecision(2) << menuList[i].price << "Eur" << endl;
     }
     cout << "0 - Iseiti is meniu" << endl;
 }
@@ -66,16 +66,6 @@ void setOrder(int id, int quantity) {
     orderList[id - 1].id = id - 1;
     orderList[id - 1].quantity = quantity;
     cout << "uzsakimas sekmingai padaritas" << endl;
-}
-
-void getAll() {
-    int orderListLength = size(orderList);
-    for (int i = 0; i < orderListLength; i++) {
-        if (orderList[i].quantity > 0) {
-            cout << left << orderList[i].quantity << " " << setw(40) << menuList[orderList[i].id].name << right << fixed << setprecision(2) << menuList[orderList[i].id].price << " $" << endl;
-        }
-
-    }
 }
 
 void executeMenu() {
@@ -97,7 +87,13 @@ void executeMenu() {
         cout << "yrasikite kieki" << endl;
         cin >> kiekis;
 
-        cout << "Patvirtinti uzsakima yrasikite taip/nie" << endl;
+        if (kiekis > 9) {
+            cout << "Perdidelis kiekis yrasitas" << endl;
+            continue;
+        }
+        
+
+        cout << "Patvirtinti uzsakima yrasikite taip/nia" << endl;
         cin >> actions;
 
         while (true) {
@@ -117,6 +113,43 @@ void executeMenu() {
     }
 }
 
+void executeBill() {
+    ofstream write;
+    int
+        orderListLength = size(orderList),
+        width = 14;
+    float sum = 0;
+    write.open("result.txt");
+    for (int i = 0; i < orderListLength; i++) {
+        if (menuList[orderList[i].id].name.size() > width) {
+            width = menuList[orderList[i].id].name.size();
+        }
+    }
+
+    for (int i = 0; i < orderListLength; i++) {
+        if (orderList[i].quantity > 0) {
+            sum += menuList[orderList[i].id].price * orderList[i].quantity;
+            write
+                << left << orderList[i].quantity << " " << setw(width + 1) << menuList[orderList[i].id].name
+                << right << fixed << setprecision(2)
+                << menuList[orderList[i].id].price << "Eur" << endl;
+            cout
+                << left << orderList[i].quantity << " " << setw(width + 1) << menuList[orderList[i].id].name
+                << right << fixed << setprecision(2)
+                << menuList[orderList[i].id].price << "Eur" << endl;
+
+        }
+
+    }
+    write << left << setw(width + 3) << "Mokesciai" << right << fixed << setprecision(2) << sum * 0.21 << "Eur" << endl;
+    write << left << setw(width + 3) << "Galutinie suma" << right << fixed << setprecision(2) << round((sum + (sum * 0.21)) * 100.0 / 100.0)  << "$" << endl;
+
+    cout << left << setw(width + 3) << "Mokesciai" << right << fixed << setprecision(2) << sum * 0.21 << "Eur" << endl;
+    cout << left << setw(width + 3) << "Galutinie suma" << right << fixed << setprecision(2) << round((sum + (sum * 0.21)) * 100.0 / 100.0) << "$" << endl;
+    write.close();
+    cout << endl;
+}
+
 
 int main()
 {
@@ -128,6 +161,7 @@ int main()
 			<< "2 - Saskaita \n"
 			<< "0 - Baigti darba" << endl;
 		cin >> command;
+        cout << endl;
 
 		if (command == 0)
 			break;
@@ -137,7 +171,7 @@ int main()
             executeMenu();
 			break;
 		case 2:
-            getAll();
+            executeBill();
 			break;
 		}
 
